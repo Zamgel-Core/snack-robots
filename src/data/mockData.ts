@@ -1,0 +1,122 @@
+import { Product, Sale, Purchase, Goal, Achievement } from '../types';
+
+export const mockProducts: Product[] = [
+  {
+    id: ' jell-eez',
+    name: 'Jell-eez',
+    category: 'Gelatinas',
+    description: 'Gelatina de sabores surtidos',
+    stock: 10,
+    packageCost: 3.00,
+    piecesPerPackage: 10,
+    costPerPiece: 0.30,
+    price: 0.75,
+    profitPerPiece: 0.45,
+  },
+  {
+    id: 'smarties',
+    name: 'Smarties Original',
+    category: 'Dulces',
+    description: 'Pastillas sabor fruta',
+    stock: 20,
+    packageCost: 2.00,
+    piecesPerPackage: 20,
+    costPerPiece: 0.10,
+    price: 0.50,
+    profitPerPiece: 0.40,
+  },
+  {
+    id: 'tropi-cups',
+    name: 'Tropi Cups',
+    category: 'Gelatinas',
+    description: 'Gelatinas pequeñas de sabores surtidos',
+    stock: 20,
+    packageCost: 2.00,
+    piecesPerPackage: 20,
+    costPerPiece: 0.10,
+    price: 0.50,
+    profitPerPiece: 0.40,
+  },
+  {
+    id: 'pika-nikas',
+    name: 'Pika-Nikas',
+    category: 'Dulces Picantes',
+    description: 'Dulces de sabores con relleno picoso',
+    stock: 16,
+    packageCost: 2.00,
+    piecesPerPackage: 16,
+    costPerPiece: 0.125,
+    price: 0.50,
+    profitPerPiece: 0.375,
+  },
+  {
+    id: 'dubble-bubble',
+    name: 'Dubble Bubble',
+    category: 'Chicles',
+    description: 'Chicles sabor original',
+    stock: 20,
+    packageCost: 2.00,
+    piecesPerPackage: 20,
+    costPerPiece: 0.10,
+    price: 0.50,
+    profitPerPiece: 0.40,
+  },
+  {
+    id: 'canels',
+    name: 'Canel\'s',
+    category: 'Chicles',
+    description: 'Chicles clásicos surtidos',
+    stock: 60,
+    packageCost: 3.00,
+    piecesPerPackage: 60,
+    costPerPiece: 0.05,
+    price: 0.25,
+    profitPerPiece: 0.20,
+  },
+  {
+    id: 'mazapan',
+    name: 'Mazapán Original De la Rosa',
+    category: 'Dulces Mexicanos',
+    description: 'Dulce de cacahuate estilo mazapán',
+    stock: 12,
+    packageCost: 3.00,
+    piecesPerPackage: 12,
+    costPerPiece: 0.25,
+    price: 0.75,
+    profitPerPiece: 0.50,
+  },
+  {
+    id: 'icee-sour-belts',
+    name: 'ICEE Sour Belts',
+    category: 'Gomitas Ácidas',
+    description: 'Tiras dulces ácidas multicolor',
+    stock: 1,
+    packageCost: 2.00,
+    piecesPerPackage: 1,
+    costPerPiece: 2.00,
+    price: 3.00,
+    profitPerPiece: 1.00,
+  }
+];
+
+export const mockSales: Sale[] = [
+  { id: '1', items: [{ productId: 'canels', quantity: 2, price: 0.25 }], total: 0.50, profit: 0.40, date: new Date().toISOString() },
+  { id: '2', items: [{ productId: 'mazapan', quantity: 1, price: 0.75 }], total: 0.75, profit: 0.50, date: new Date().toISOString() },
+];
+
+export const mockPurchases: Purchase[] = [
+  { id: '1', description: 'Inventario inicial', totalCost: 19.00, date: new Date(Date.now() - 86400000 * 2).toISOString() }
+];
+
+export const mockGoals: Goal[] = [
+  { id: '1', title: 'Recuperar Inversión Inicial', target: 19.00, current: 1.25, type: 'sales' },
+  { id: '2', title: 'Llegar a $50 Vendidos', target: 50.00, current: 1.25, type: 'sales' },
+  { id: '3', title: 'Nueva Caja de Canel\'s', target: 3.00, current: 0.90, type: 'profit' },
+];
+
+export const mockAchievements: Achievement[] = [
+  { id: '1', title: 'Primera Venta', description: '¡Hiciste tu primera venta!', icon: 'party-popper', unlocked: true, unlockedAt: new Date().toISOString() },
+  { id: '2', title: 'Primeros $10', description: 'Vendiste tus primeros $10 USD', icon: 'coin', unlocked: false },
+  { id: '3', title: 'Inversión Recuperada', description: 'Ganaste lo suficiente para pagar la inversión inicial', icon: 'trending-up', unlocked: false },
+  { id: '4', title: 'Rey de los Snacks', description: 'Llega a 100 ventas totales', icon: 'crown', unlocked: false },
+];

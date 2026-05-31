@@ -1,0 +1,6 @@
+{
+  "name": "Snack Robots",
+  "description": "Snack Robots Control Center - A child friendly POS system and Dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
