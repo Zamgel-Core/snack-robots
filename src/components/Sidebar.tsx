@@ -26,8 +26,8 @@ const links = [
   { name: "Reportes", to: "/portal/reports", icon: BarChart3 },
   { name: "Metas", to: "/portal/goals", icon: Target },
   { name: "Logros", to: "/portal/achievements", icon: Trophy },
-  { name: "Configuración", to: "/portal/settings", icon: Settings },
   { name: "Roles", to: "/portal/roles", icon: ShieldCheck },
+  { name: "Configuración", to: "/portal/settings", icon: Settings },
 ];
 
 export function Sidebar() {
