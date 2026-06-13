@@ -14,13 +14,26 @@ import { Goals } from './pages/Goals';
 import { Achievements } from './pages/Achievements';
 import { Settings } from './pages/Settings';
 import { Roles } from './pages/Roles';
+import { AccessGuard } from './components/AccessGuard';
+import { TabletPOS } from './pages/TabletPOS';
+import { PWAInstallPrompt } from './components/PWAInstallPrompt';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <PWAInstallPrompt />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/terminal"
+          element={
+            <ProtectedRoute>
+              <AccessGuard permission="pos"><TabletPOS /></AccessGuard>
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/portal"
@@ -30,16 +43,16 @@ export default function App() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<Dashboard />} />
-          <Route path="pos" element={<POS />} />
-          <Route path="inventory" element={<Inventory />} />
-          <Route path="purchases" element={<Purchases />} />
-          <Route path="register" element={<CashRegister />} />
-          <Route path="reports" element={<Reports />} />
-          <Route path="goals" element={<Goals />} />
-          <Route path="achievements" element={<Achievements />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="roles" element={<Roles />} />
+          <Route index element={<AccessGuard permission="dashboard"><Dashboard /></AccessGuard>} />
+          <Route path="pos" element={<AccessGuard permission="pos"><POS /></AccessGuard>} />
+          <Route path="inventory" element={<AccessGuard permission="inventory"><Inventory /></AccessGuard>} />
+          <Route path="purchases" element={<AccessGuard permission="purchases"><Purchases /></AccessGuard>} />
+          <Route path="register" element={<AccessGuard permission="cash"><CashRegister /></AccessGuard>} />
+          <Route path="reports" element={<AccessGuard permission="reports"><Reports /></AccessGuard>} />
+          <Route path="goals" element={<AccessGuard permission="goals"><Goals /></AccessGuard>} />
+          <Route path="achievements" element={<AccessGuard permission="achievements"><Achievements /></AccessGuard>} />
+          <Route path="settings" element={<AccessGuard permission="settings"><Settings /></AccessGuard>} />
+          <Route path="roles" element={<AccessGuard permission="roles"><Roles /></AccessGuard>} />
         </Route>
       </Routes>
     </BrowserRouter>

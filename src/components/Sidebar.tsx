@@ -11,27 +11,29 @@ import {
   Trophy,
   Settings,
   ShieldCheck,
-  Bot,
 } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useAuth } from "../contexts/AuthContext";
+import { canAccess, getEffectiveRole, PermissionKey, roleLabel } from "../lib/permissions";
 import typographyLogo from "../assets/logos/snack-robots-text.png";
 
-const links = [
-  { name: "Dashboard", to: "/portal", icon: LayoutDashboard },
-  { name: "Vender", to: "/portal/pos", icon: ShoppingCart },
-  { name: "Inventario", to: "/portal/inventory", icon: Package },
-  { name: "Compras", to: "/portal/purchases", icon: ShoppingBag },
-  { name: "Caja", to: "/portal/register", icon: Calculator },
-  { name: "Reportes", to: "/portal/reports", icon: BarChart3 },
-  { name: "Metas", to: "/portal/goals", icon: Target },
-  { name: "Logros", to: "/portal/achievements", icon: Trophy },
-  { name: "Roles", to: "/portal/roles", icon: ShieldCheck },
-  { name: "Configuración", to: "/portal/settings", icon: Settings },
+const links: Array<{ name: string; to: string; icon: typeof LayoutDashboard; permission: PermissionKey }> = [
+  { name: "Dashboard", to: "/portal", icon: LayoutDashboard, permission: "dashboard" },
+  { name: "Vender", to: "/portal/pos", icon: ShoppingCart, permission: "pos" },
+  { name: "Inventario", to: "/portal/inventory", icon: Package, permission: "inventory" },
+  { name: "Compras", to: "/portal/purchases", icon: ShoppingBag, permission: "purchases" },
+  { name: "Caja", to: "/portal/register", icon: Calculator, permission: "cash" },
+  { name: "Reportes", to: "/portal/reports", icon: BarChart3, permission: "reports" },
+  { name: "Metas", to: "/portal/goals", icon: Target, permission: "goals" },
+  { name: "Logros", to: "/portal/achievements", icon: Trophy, permission: "achievements" },
+  { name: "Roles", to: "/portal/roles", icon: ShieldCheck, permission: "roles" },
+  { name: "Configuración", to: "/portal/settings", icon: Settings, permission: "settings" },
 ];
 
 export function Sidebar() {
   const { profile } = useAuth();
+  const visibleLinks = links.filter((link) => canAccess(profile, link.permission));
+  const currentRole = getEffectiveRole(profile);
 
   return (
     <nav className="w-[240px] flex flex-col gap-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-[32px] p-6 shadow-2xl flex-shrink-0 relative overflow-y-auto">
@@ -51,7 +53,7 @@ export function Sidebar() {
       </div>
 
       <div className="flex flex-col gap-2 flex-grow">
-        {links.map((link) => {
+        {visibleLinks.map((link) => {
           const Icon = link.icon;
           return (
             <NavLink
@@ -92,7 +94,7 @@ export function Sidebar() {
         </p>
 
         <p className="text-[11px] text-blue-200 uppercase mt-1">
-          {profile?.global_role || "Sin rol"}
+          {roleLabel(currentRole)}
         </p>
       </div>
     </nav>
