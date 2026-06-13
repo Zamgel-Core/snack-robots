@@ -694,12 +694,27 @@ export function Settings() {
                         <p className="font-black uppercase tracking-wide">Rol activo</p>
                       </div>
                       <p className="text-2xl font-black">{profile?.global_role === 'super_admin' ? 'SUPER ADMIN' : 'ADMINISTRADOR'}</p>
-                      <p className="mt-2 text-sm font-bold text-blue-200">En el siguiente módulo podremos convertir esto en permisos granulares por empleado.</p>
+                      <p className="mt-2 text-sm font-bold text-blue-200">Super Admin controla todo. Store Admin puede operar la tienda, pero acciones críticas deben pedir PIN superior.</p>
                     </div>
-                    <Field label="PIN para acciones críticas" hint="No usar datos sensibles. Es una base temporal para flujos internos.">
+                    <Field label="PIN de Super Admin" hint="Este PIN protege acciones delicadas del Store Admin: precios, cancelaciones, cierre de caja, roles y configuración crítica.">
                       <input className={inputClass} value={settings.critical_action_pin} onChange={(e) => setText('critical_action_pin', e.target.value)} placeholder="Ej. 1234" />
                     </Field>
                   </div>
+                  <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
+                    <div className="rounded-3xl border border-yellow-300/20 bg-yellow-400/10 p-4">
+                      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-yellow-300">Super Admin</p>
+                      <p className="mt-2 text-sm font-bold text-yellow-50">Dueño del sistema. Autoriza cambios críticos, roles, configuración y reportes sensibles.</p>
+                    </div>
+                    <div className="rounded-3xl border border-sky-300/20 bg-sky-400/10 p-4">
+                      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-200">Store Admin</p>
+                      <p className="mt-2 text-sm font-bold text-blue-50">Administrador de tienda. Tiene permisos avanzados, pero acciones delicadas requieren PIN de Super Admin.</p>
+                    </div>
+                    <div className="rounded-3xl border border-emerald-300/20 bg-emerald-400/10 p-4">
+                      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">Staff</p>
+                      <p className="mt-2 text-sm font-bold text-emerald-50">Cajero/empleado. Opera ventas y consulta lo necesario sin tocar datos sensibles.</p>
+                    </div>
+                  </div>
+
                   <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
                     <Toggle label="Confirmar acciones destructivas" description="Confirmación visual antes de desactivar o modificar datos críticos." checked={settings.confirm_destructive_actions} onChange={(v) => setBoolean('confirm_destructive_actions', v)} />
                     <Toggle label="PIN para eliminar producto" description="Protege desactivación o eliminación futura de productos." checked={settings.require_pin_delete_product} onChange={(v) => setBoolean('require_pin_delete_product', v)} />

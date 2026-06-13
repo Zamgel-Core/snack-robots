@@ -10,6 +10,7 @@ import {
   Target,
   Trophy,
   Settings,
+  ShieldCheck,
   Bot,
 } from "lucide-react";
 import { cn } from "../lib/utils";
@@ -26,6 +27,7 @@ const links = [
   { name: "Metas", to: "/portal/goals", icon: Target },
   { name: "Logros", to: "/portal/achievements", icon: Trophy },
   { name: "Configuración", to: "/portal/settings", icon: Settings },
+  { name: "Roles", to: "/portal/roles", icon: ShieldCheck },
 ];
 
 export function Sidebar() {
